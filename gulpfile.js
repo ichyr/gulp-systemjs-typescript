@@ -44,6 +44,16 @@ gulp.task('compile:typescript', function () {
   .pipe(gulp.dest(paths.tscripts.dest));
 });
 
+gulp.task('cs', function () {
+  return gulp
+  .src(paths.tscripts.src)
+  .pipe(tsc({
+    module: "system",
+    target: "es5"
+  }))
+  .pipe(gulp.dest(paths.tscripts.dest));
+});
+
 // ** Linting ** //
 
 gulp.task('lint', ['lint:default']);
