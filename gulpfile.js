@@ -51,13 +51,29 @@ gulp.task('cs', function () {
     .src(paths.tscripts.src)
     .pipe(tsc({
       target: 'ES5',
-      module: 'system',
-      experimentalDecorators: true,
-      emitDecoratorMetadata: true,
-      outFile: 'bundle.js'
+      module: 'system'
     }))
     .pipe(gulp.dest(paths.tscripts.dest));
 });
+
+gulp.task('bundle', ['cs'], function () {
+  var path = require("path");
+  var Builder = require('systemjs-builder');
+
+  // optional constructor options
+  // sets the baseURL and loads the configuration file
+  var builder = new Builder('build/');
+
+  builder
+    .bundle('index.js', 'bundle.js')
+    .then(function () {
+      console.log('Build complete');
+    })
+    .catch(function (err) {
+      console.log('Build error');
+      console.log(err);
+    });
+})
 
 // ** Linting ** //
 
