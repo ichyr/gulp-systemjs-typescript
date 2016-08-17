@@ -8,11 +8,12 @@
   },
   "devDependencies": {
     "gulp": "^3.6.2",
-    "gulp-tsc": "^0.10.1",
     "gulp-shell": "^0.4.2",
+    "gulp-tsc": "^0.10.1",
     "gulp-tslint": "^2.0.0",
+    "mocha": "*",
     "run-sequence": "^1.1.1",
-    "mocha": "*"
+    "webpack-stream": "^3.2.0"
   },
   "scripts": {
     "main": "gulp buildrun",

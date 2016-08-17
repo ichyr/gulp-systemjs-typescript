@@ -56,14 +56,14 @@ gulp.task('cs', function () {
     .pipe(gulp.dest(paths.tscripts.dest));
 });
 
-gulp.task('bundle', /* ['cs'], */ function () {
+gulp.task('bundle:sys:builder', /* ['cs'], */ function () {
   var path = require("path");
   var Builder = require('systemjs-builder');
 
   // optional constructor options
   // sets the baseURL and loads the configuration file
   var builder = new Builder('build/', {
-     defaultJSExtensions: true,
+    defaultJSExtensions: true,
   });
 
   builder
@@ -76,6 +76,14 @@ gulp.task('bundle', /* ['cs'], */ function () {
       console.log(err);
     });
 })
+
+gulp.task('bundle:webpack', function () {
+  var gulp = require('gulp');
+  var webpack = require('webpack-stream');
+  return gulp.src('build/pilot.js')
+    .pipe(webpack())
+    .pipe(gulp.dest('dist/'));
+});
 
 // ** Linting ** //
 
