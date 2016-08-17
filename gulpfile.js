@@ -51,7 +51,7 @@ gulp.task('cs', function () {
     .src(paths.tscripts.src)
     .pipe(tsc({
       target: 'ES5',
-      module: 'amd'
+      module: 'commonjs'
     }))
     .pipe(gulp.dest(paths.tscripts.dest));
 });
@@ -77,11 +77,15 @@ gulp.task('bundle:sys:builder', /* ['cs'], */ function () {
     });
 })
 
-gulp.task('bundle:webpack', function () {
+gulp.task('bundle:webpack', ['cs'], function () {
   var gulp = require('gulp');
   var webpack = require('webpack-stream');
   return gulp.src('build/pilot.js')
-    .pipe(webpack())
+    .pipe(webpack({
+      output: {
+        filename: 'app.js',
+      }
+    }))
     .pipe(gulp.dest('dist/'));
 });
 

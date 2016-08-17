@@ -13,3 +13,6 @@ class Pilot extends Person {
        console.log(`You are being served by pilot with ID: ${this.id}`);
    }
 }
+
+let a: Pilot = new Pilot('Sandy', 'black-goat');
+a.pilotGreeting();
