@@ -80,10 +80,12 @@ gulp.task('bundle:sys:builder', /* ['cs'], */ function () {
 gulp.task('bundle:webpack', ['cs'], function () {
   var gulp = require('gulp');
   var webpack = require('webpack-stream');
+  var named = require('vinyl-named');
   return gulp.src('build/pilot.js')
+    .pipe(named())
     .pipe(webpack({
       output: {
-        filename: 'app.js',
+        filename: 'app.js'
       }
     }))
     .pipe(gulp.dest('dist/'));
